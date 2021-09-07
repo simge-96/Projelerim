@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="tr-TR">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="css.css" type="text/css">
+    <title>Hamburger Oyunu</title>
+
+</head>
+
+<body>
+
+
+
+    <div id="false" class="error"><img class="errorimg" src="hata.png" alt="">
+        <div>
+            <h1>Opss..</h1>
+        </div>
+    </div>
+
+    <div id="true" class="win"><img src="tamhamburger.png" class="winimg" alt="">
+        <h1>Tebrikler Oyunu kazandınız</h1>
+    </div>
+
+    <div id="end" class="sory"><img src="sory.png" class="winimg" alt="">
+        <h1>Oyunu Kaybettiniz</h1>
+    </div>
+
+
+    <div class="timetext">
+        Kalan Süre
+        <div id="time" class="timenum">15</div>
+    </div>
+
+
+
+    <div class="container">
+
+        <div class="container first">
+            <div class="box one"></div>
+            <div class="box two"></div>
+            <div class="box three"></div>
+            <div class="box four"></div>
+            <div class="box five"></div>
+        </div>
+
+        <div class="container first">
+            <div class="box five"><img src="hamburger alt.png" alt="" draggable="true" id="hamburgeraltı"></div>
+            <div class="box four"><img src="köfte.png" alt="" draggable="true" id="kofte"></div>
+            <div class="box one"><img src="hamburger üst.png" draggable="true" id="hamburgerustu" alt=""></div>
+            <div class="box two"><img src="domates.png" alt="" draggable="true" id="domates"></div>
+            <div class="box three"><img src="peynir.png" alt="" draggable="true" id="peynir"></div>
+        </div>
+    </div>
+
+    <script type="text/javascript" language="javascript">
+        var sayi = document.getElementById("time").innerHTML;
+        //sayaç kronometre
+        var zaman = setInterval(function () {
+            //sayaç kronometre
+            sayi = sayi - 1;
+            document.getElementById("time").innerHTML = sayi;
+            if (sayi == 0) {
+                //oyunu kaybettiniz
+                document.getElementById("end").style.visibility = "visible";
+
+                clearInterval(zaman);
+                document.getElementById('hamburgerustu').setAttribute('draggable', false);
+                document.getElementById('hamburgeraltı').setAttribute('draggable', false);
+                document.getElementById('kofte').setAttribute('draggable', false);
+                document.getElementById('domates').setAttribute('draggable', false);
+                document.getElementById('peynir').setAttribute('draggable', false);
+                setTimeout(function () {
+                    window.history.back();
+                    //window.open("star.htm");
+                }, 1000);
+
+            }
+            //sürüklenme başlandı
+            document.addEventListener("dragstart", basladı);
+            function basladı() {
+                event.dataTransfer.setData("Text", event.target.id);
+            }
+            document.addEventListener("drag", surukle);
+            function surukle() {
+                // document.getElementById("demo").innerHTML = "sürüklendi";
+            }
+            document.addEventListener("dragover", uzerinde);
+            function uzerinde() {
+                event.preventDefault();
+                //document.getElementById("demo").innerHTML = "üzerinde";
+            }
+
+            var adet = 0;
+            document.addEventListener("drop", bırak);
+
+            function bırak() {
+                event.preventDefault();
+                var data = event.dataTransfer.getData("Text");
+                if (data == "peynir")
+                    if (event.target.className == "box three") {
+                        {
+                            event.target.appendChild(document.getElementById(data));
+                            //document.getElementById("demo").innerHTML = "peynir";
+                            adet = adet + 1;
+                        }
+                    }
+                    else {
+
+                        document.getElementById("false").style.visibility = "visible";
+                        setTimeout(function () {
+                            document.getElementById("false").style.visibility = "hidden";
+
+                        }, 400);
+
+
+                    }
+
+                if (data == "hamburgeraltı")
+                    if (event.target.className == "box five") {
+                        {
+                            event.target.appendChild(document.getElementById(data));
+                            adet = adet + 1;
+
+                        }
+                    }
+                    else {
+                        document.getElementById("false").style.visibility = "visible";
+                        setTimeout(function () {
+                            document.getElementById("false").style.visibility = "hidden";
+                        }, 400);
+                    }
+                if (data == "kofte")
+                    if (event.target.className == "box four") {
+                        {
+                            event.target.appendChild(document.getElementById(data));
+                            adet = adet + 1;
+                        }
+                    }
+                    else {
+                        document.getElementById("false").style.visibility = "visible";
+                        setTimeout(function () {
+                            document.getElementById("false").style.visibility = "hidden";
+                        }, 400);
+                    }
+                if (data == "hamburgerustu")
+                    if (event.target.className == "box one") {
+                        {
+                            event.target.appendChild(document.getElementById(data));
+                            adet = adet + 1;
+                        }
+                    }
+                    else {
+
+                        document.getElementById("false").style.visibility = "visible";
+                        setTimeout(function () {
+                            document.getElementById("false").style.visibility = "hidden";
+                        }, 400);
+                    }
+
+                if (data == "domates")
+                    if (event.target.className == "box two") {
+                        {
+                            event.target.appendChild(document.getElementById(data));
+                            adet = adet + 1;
+
+                        }
+                    }
+                    else {
+
+                        document.getElementById("false").style.visibility = "visible";
+                        setTimeout(function () {
+                            document.getElementById("false").style.visibility = "hidden";
+                        }, 400);
+                    }
+
+                //document.getElementById("demo").innerHTML = adet;
+                //console.log(adet);
+
+                if (adet == 5) {
+                    // oyunu kazandınız
+                    document.getElementById("true").style.visibility = "visible";
+                    setTimeout(function () {
+                        document.getElementById("true").style.visibility = "hidden";
+                    }, 900);
+                    clearInterval(zaman);
+                }
+            }
+        }, 1000); //zaman bıttı 
+
+    </script>
+</body>
+
+</html>

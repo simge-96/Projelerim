@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css.css" type="text/css">
+    <title>start</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+    <script>
+        $(document).ready(function () {
+            $("button").mouseover(function () {
+                var div = $("div");
+                div.animate({ left: '650px' }, "slow");
+                $("button").animate({ fontSize: '3em' }, "slow");
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+    <div style="position:absolute;"> <button onClick="parent.location='mini-hamburger.html'">OYNA</button></div>
+
+</body>
+
+</html>
