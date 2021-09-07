@@ -1,2 +1,2 @@
 # Projelerim
-JS
+sürekle bırak hamburger oyunu
